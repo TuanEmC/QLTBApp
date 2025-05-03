@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   },
   infoContainer: {
     marginBottom: 15,
-    padding: 10,
+    padding: 15,
     backgroundColor: '#fff', // Background trắng cho mỗi phần thông tin
     borderRadius: 8,
     shadowColor: '#000', // Thêm bóng cho đẹp
@@ -33,5 +33,45 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333', // Màu chữ cho thông tin
     marginTop: 5,
+  },
+  buttonsContainer: {
+    marginTop: 20,
+    paddingHorizontal: 10,
+  },
+  editButton: {
+    backgroundColor: '#2196F3',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 3, // Thêm hiệu ứng nổi cho nút
+  },
+  editButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  saveButton: {
+    backgroundColor: '#4CAF50',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 3, // Thêm hiệu ứng nổi cho nút
+  },
+  saveButtonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  emptyButton: {
+    backgroundColor: '#D3D3D3',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 10,
+    elevation: 3, // Thêm hiệu ứng nổi cho nút
+  },
+  emptyButtonText: {
+    color: '#888',
+    textAlign: 'center',
+    fontSize: 16,
   },
 });

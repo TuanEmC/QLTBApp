@@ -4,26 +4,30 @@ import { styles } from '../styles/LoginScreenStyles';
 import { database } from '../firebase';
 import { ref, get } from 'firebase/database';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
   const { setIsLoggedIn, setUser } = useContext(AuthContext); // Lấy setUser từ context
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigation = useNavigation(); // Dùng để điều hướng sau khi đăng nhập thành công
 
   const handleLogin = async () => {
     try {
-      const snapshot = await get(ref(database, '/'));
+      // Truy vấn dữ liệu từ Firebase dưới key "tai_khoan"
+      const snapshot = await get(ref(database, '/tai_khoan'));
+      
       if (snapshot.exists()) {
         const data = snapshot.val();
         const users = Object.values(data);
 
+        console.log('Tất cả người dùng:', users); // Debug log tất cả người dùng
+
         const matchedUser = users.find(
           (user) =>
-            user.tenTaiKhoan &&
-            user.matKhau &&
-            user.tenTaiKhoan.trim().toLowerCase() === username.trim().toLowerCase() &&
-            user.matKhau.trim() === password.trim()
+            user.tenTaiKhoan?.trim().toLowerCase() === username.trim().toLowerCase() &&
+            user.matKhau?.trim() === password.trim()
         );
 
         if (matchedUser) {
@@ -31,6 +35,7 @@ export default function LoginScreen() {
           setError('');
           Alert.alert('Thành công', 'Đăng nhập thành công');
           setIsLoggedIn(true); // Đăng nhập thành công
+          navigation.navigate('HomeScreen'); // Điều hướng về trang Home
         } else {
           setError('Tên đăng nhập hoặc mật khẩu sai');
         }
